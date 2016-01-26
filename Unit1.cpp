@@ -14,7 +14,7 @@ Graphics::TBitmap*BadImage;
 TPoint GoodPos;
 int o, x0, j, i, speed=1,NewX,NewY,N;
 bool IsIntersect;
-TPoint BadPos[25];  //Положения x,y каждого плохиша
+TPoint BadPos[25];  //location of each badguy
 int Lifes;
 int p;
 //---------------------------------------------------------------------------
@@ -67,21 +67,6 @@ TForm1::CreateCoord()
 		BadPos[r].y=NewY;
 	}
 	return true;
-	/*for (int row=0; row<5; row++)
-	{
-		for (int i=0; i<3; i++)
-		{
-			while (1)
-			{
-				NewX=random(300);
-				IsIntersect=false;
-				for (int j=0; j<3; j++)
-				{
-
-				}
-			}
-		}
-	} */
 }
 //---------------------------------------------------------------------------
 
@@ -100,12 +85,12 @@ FlipOnForm();
 if(IfAll())
 		{
 		Timer1->Enabled=false;
-		ShowMessage("Переход на следующий уровень\n+1 жизнь");
+		ShowMessage("next level\n+1 life");
 		Lifes++;
 		speed++;
 		p++;
-        Label2->Caption="Уровень: "+IntToStr(p);
-		Label1->Caption="Жизней:"+IntToStr(Lifes);
+        Label2->Caption="Г“Г°Г®ГўГҐГ­Гј: "+IntToStr(p);
+		Label1->Caption="Г†ГЁГ§Г­ГҐГ©:"+IntToStr(Lifes);
 		GoodPos=Point(0,0);
 		for(int i=0;i<N;i++)BadPos[i].x=666;
 		//MoveBad();
@@ -114,23 +99,23 @@ if(IfAll())
 if(TestEnd())
 		{
 		Timer1->Enabled=false;
-		ShowMessage("Вас сбили");
+		ShowMessage("shot down");
 		if(Lifes>0)
 		{
 		Lifes--;
-		Label1->Caption="Жизней: "+IntToStr(Lifes);
+		Label1->Caption="Г†ГЁГ§Г­ГҐГ©: "+IntToStr(Lifes);
 		GoodPos=Point(0,0);
 		for(int i=0;i<N;i++)BadPos[i].x=666;
 		//MoveBad();
 		Timer1->Enabled=true;
 		}else
 				{
-				ShowMessage("Вам придётся начинать сначала");
+				ShowMessage("dead");
 				Lifes=3;
 				speed=1;
 				p=1;
-				Label2->Caption="Уровень: "+IntToStr(p);
-				Label1->Caption="Жизней: "+IntToStr(Lifes);
+				Label2->Caption="Г“Г°Г®ГўГҐГ­Гј: "+IntToStr(p);
+				Label1->Caption="Г†ГЁГ§Г­ГҐГ©: "+IntToStr(Lifes);
 				GoodPos=Point(0,0);
 				for(int i=0;i<N;i++)BadPos[i].x=666;
 				//MoveBad();
@@ -173,7 +158,7 @@ TForm1::MoveBad()
 		return 0;
   }
 
-  for (int r = 0; r < N; r++) // вместо этой штуки
+  for (int r = 0; r < N; r++)
   {
 	if (BadPos[r] .x<-50)
 	{
@@ -196,15 +181,7 @@ TForm1::MoveBad()
 		BadPos[r].x=NewX;
 		BadPos[r].y=NewY;
 	}
-   //BadPos[r] .x=random (300);
-   //BadPos[r] .y=random (5)*30 +50;
    }
-   /*int cellWidth =  300 / 8; int currentBadGuy = 0;
-   for(int i = 0; i <  5; i++)
-   {for(int j = 0; j <  8; j++)
-   {if (i == 0 && j == 0) continue;
-   BadPos[currentBadGuy].x=j * cellWidth + random(cellWidth);
-   BadPos[currentBadGuy].y=i;currentBadGuy++;}} */
    for (int i = 0; i < N; i++)
    {
 	  BadPos[i] .x-=speed;
